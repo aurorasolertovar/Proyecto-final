@@ -17,6 +17,8 @@ int cont;
 int canciónMásVotada1;
 int canciónMásVotada2;
 int votosmáximos;
+int puntosmáximos;
+int oyenteganador;
     
 int main()
 {
@@ -158,7 +160,21 @@ void personaGanadora ( )
         }
         printf("Oyente número %d: %d puntos\n",cont, matrizOyente[cont]);
         cont++;
-        
-        
     }
+    
+    oyenteganador=0;
+    puntosmáximos=matrizOyente[0];
+    
+    cont=0;
+    while(cont<número)
+    {
+        if(matrizOyente[cont+1]>puntosmáximos)
+        {
+            puntosmáximos=matrizOyente[cont+1];
+            oyenteganador=cont+1;
+        }
+        cont++;
+    }
+    printf("Ha ganado el oyente número %d", oyenteganador);
+    
 }
