@@ -12,6 +12,7 @@ int i;
 int j;
 int número;
 int matrizCanción[10];
+int matrizOyente[100];
 int cont;
 int canciónMásVotada1;
 int canciónMásVotada2;
@@ -29,20 +30,23 @@ int main()
 
 void lecturaYAlmacenamiento ( )
 {
-    
-    for(i=0; i<10 ; i++)
+    i=0;
+    j=0;
+    while(i<10)
     {
-        for(j=0; j<10 ; j++)
+        while(j<10)
         {
-            matriz[i][j]=0;
+            matriz[i][j]=0.0;
+            j++;
         }
+        i++;
     }
     printf ("Escribe las 3 canciones de mayor a menor, con comas, -1 para fin\n");
     cont=0;
     número=0;
     while(cont<10 && primera!=-1)
     {
-        printf("oyente %d\n", número+1);
+        printf("oyente %d\n", número);
         
         scanf("%d,%d,%d", &primera, &segunda, &tercera);
         if (primera!=-1)
@@ -58,6 +62,8 @@ void lecturaYAlmacenamiento ( )
         número ++;
         cont++;
     }
+
+    
     
 }
 
@@ -86,7 +92,8 @@ void conteoDeVotos( )
     
     i=0;
     votosmáximos=matrizCanción[0];
-    
+    canciónMásVotada1=0;
+    canciónMásVotada2=0;
     while(i<9)
     {
         if(votosmáximos<matrizCanción[i+1])
@@ -111,17 +118,47 @@ void conteoDeVotos( )
         }
         i++;
     }
-    printf("La segunda canción más votada es la número %d", canciónMásVotada2);
+    printf("La segunda canción más votada es la número %d\n", canciónMásVotada2);
 }
 
 void personaGanadora ( )
 {
-    cont=0;
-    while (cont<número)
+       //
+    
+    
+
+    for(i=0;i<10;i++)
     {
-        if(matriz[cont][canciónMásVotada1]=3)
+        for (j=0;j<10;j++)
         {
-            
+            printf("%d ", matriz[i][j]);
+        
         }
+        
+        printf("\n");
+      
+    }
+    
+    ////
+    i=0;
+    cont=0;
+    while(cont<número-1)
+    {
+        if(matriz[cont][canciónMásVotada1]!=0)
+        {
+            matrizOyente[cont]=30;
+        }
+        if(matriz[cont][canciónMásVotada2]!=0)
+        {
+            matrizOyente[cont]=matrizOyente[cont]+20;
+        }
+        if(matriz[cont][canciónMásVotada1]!=0 && matriz[cont][canciónMásVotada2]!=0 )
+        {
+            matrizOyente[cont]=60;
+        }
+        printf("Oyente número %d: %d puntos\n",cont, matrizOyente[cont]);
+        cont++;
+        
+        
     }
 }
