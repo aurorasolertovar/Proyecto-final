@@ -1,5 +1,4 @@
 #include<stdio.h>
-//aquí van las funciones
 void lecturaYAlmacenamiento( );
 void conteoDeVotos ( );
 void personaGanadora ( );
@@ -7,7 +6,7 @@ void personaGanadora ( );
 int primera;
 int segunda;
 int tercera; 
-int matriz[10][10]; 
+int matriz[100][10]; 
 int i; 
 int j;
 int número;
@@ -24,44 +23,65 @@ int main()
 {
    
     lecturaYAlmacenamiento ( );
-    conteoDeVotos ( );
-    personaGanadora ( );
+    while(número!=0)
+    {
+        conteoDeVotos ( );
+        personaGanadora ( );
+        número=0;
+    }
     return 0;
 }
 
 
 void lecturaYAlmacenamiento ( )
 {
+    número=0;
     i=0;
     j=0;
-    while(i<10)
+    while(i<100)
     {
         while(j<10)
         {
-            matriz[i][j]=0.0;
+            matriz[i][j]=0;
             j++;
         }
         i++;
     }
     printf ("Escribe las 3 canciones de mayor a menor, con comas, -1 para fin\n");
     cont=0;
-    número=0;
-    while(cont<10 && primera!=-1)
+    
+    while(cont<100 && primera!=-1)
     {
-        printf("oyente %d\n", número);
-        
+       printf("oyente %d\n", número);
+        primera=segunda=tercera=-10;
         scanf("%d,%d,%d", &primera, &segunda, &tercera);
-        if (primera!=-1)
+        while (segunda== -10 || tercera==-10)
         {
-            for(i=0; i<10; i++)
-            {
-                matriz[cont][primera]=3;
-                matriz[cont][segunda]=2;
-                matriz[cont][tercera]=1;
-            }
+            printf("Debes ingresar tres números\n");
+            printf("oyente %d\n", número);
+            scanf("%d,%d,%d", &primera, &segunda, &tercera);
+            
+        }
+        while ((primera<-1 ||primera>9 || segunda<0 ||segunda>9 ||tercera<0 ||tercera>9) && segunda!=-10 && tercera !=-10 )
+        {
+            
+            printf("Deben ser números entre 0 y 9\n");
+            printf("oyente %d\n", número);
+            scanf("%d,%d,%d", &primera, &segunda, &tercera);
+            
         }
         
-        número ++;
+        if (primera!=-1)
+        {
+            matriz[cont][primera]=3;
+            matriz[cont][segunda]=2;
+            matriz[cont][tercera]=1;
+        }
+        
+        if (primera !=-1)
+        {
+            número ++;
+        }
         cont++;
     }
 
@@ -125,26 +145,10 @@ void conteoDeVotos( )
 
 void personaGanadora ( )
 {
-       //
     
-    
-
-    for(i=0;i<10;i++)
-    {
-        for (j=0;j<10;j++)
-        {
-            printf("%d ", matriz[i][j]);
-        
-        }
-        
-        printf("\n");
-      
-    }
-    
-    ////
     i=0;
     cont=0;
-    while(cont<número-1)
+    while(cont<número)
     {
         if(matriz[cont][canciónMásVotada1]!=0)
         {
@@ -173,8 +177,18 @@ void personaGanadora ( )
             puntosmáximos=matrizOyente[cont+1];
             oyenteganador=cont+1;
         }
+        
         cont++;
     }
-    printf("Ha ganado el oyente número %d", oyenteganador);
-    
+    cont=0;
+    while(cont<número)
+    {
+        if(matrizOyente[cont]==puntosmáximos)
+        {
+            oyenteganador=cont;
+            printf("Ha ganado el oyente número %d\n", oyenteganador);
+        }
+        
+        cont++;
+    }
 }
