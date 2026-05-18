@@ -56,9 +56,9 @@ void lecturaYAlmacenamiento ( )
         printf("oyente %d\n", número);
         scanf("%d,%d,%d", &primera, &segunda, &tercera);
         
-        while(segunda == -10 || tercera==-10 || primera<-1 ||primera>9 || segunda<0 ||segunda>9 ||tercera<0 ||tercera>9)
+        while(segunda == -10 || tercera==-10 || primera<-1 ||primera>9 || segunda<0 ||segunda>9 ||tercera<0 ||tercera>9 || primera==segunda || primera==tercera || segunda==tercera)
         {
-            if (segunda == -10 || tercera==-10 )
+            if (segunda == -10 || tercera == -10 )
             {
                 printf("Debes ingresar tres números\n");
                 printf("oyente %d\n", número);
@@ -74,10 +74,13 @@ void lecturaYAlmacenamiento ( )
                 scanf("%d,%d,%d", &primera, &segunda, &tercera);
             }
             
-            
-            
-            
-            
+            if ((primera==segunda || primera==tercera || segunda==tercera)&& (segunda!=-10 &&tercera!=-10))
+            {
+                printf("Debes ingresar números diferentes entre sí\n");
+                printf("oyente %d\n", número);
+                primera=segunda=tercera=-10;
+                scanf("%d,%d,%d", &primera, &segunda, &tercera);
+            }
         }
         
         if (primera!=-1)
@@ -89,8 +92,6 @@ void lecturaYAlmacenamiento ( )
         }
         cont++;
     }
-
-    
     
 }
 
