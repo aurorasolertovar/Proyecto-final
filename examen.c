@@ -47,7 +47,7 @@ void lecturaYAlmacenamiento ( )
         }
         i++;
     }
-    printf ("Escribe las 3 canciones de mayor a menor, con comas, -1 para fin\n");
+    printf ("Existen diez canciones numeradas del 0 al 9 por las cuales se puede votar. \nPídele a tus oyentes que elijan tres canciones y las ordenen empezando por la que más les guste.\nDespués, escribe separados por comas los tres números que te digan\nPara dejar de agregar canciones, debes escribir: -1, cualquier número, cualquier número.\n");
     cont=0;
     
     while(cont<100 && primera!=-1)
