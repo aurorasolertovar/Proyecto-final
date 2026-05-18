@@ -52,22 +52,31 @@ void lecturaYAlmacenamiento ( )
     
     while(cont<100 && primera!=-1)
     {
-       printf("oyente %d\n", número);
         primera=segunda=tercera=-10;
+        printf("oyente %d\n", número);
         scanf("%d,%d,%d", &primera, &segunda, &tercera);
-        while (segunda== -10 || tercera==-10)
+        
+        while(segunda == -10 || tercera==-10 || primera<-1 ||primera>9 || segunda<0 ||segunda>9 ||tercera<0 ||tercera>9)
         {
-            printf("Debes ingresar tres números\n");
-            printf("oyente %d\n", número);
-            scanf("%d,%d,%d", &primera, &segunda, &tercera);
+            if (segunda == -10 || tercera==-10 )
+            {
+                printf("Debes ingresar tres números\n");
+                printf("oyente %d\n", número);
+                primera=segunda=tercera=-10;
+                scanf("%d,%d,%d", &primera, &segunda, &tercera);
+            }
             
-        }
-        while ((primera<-1 ||primera>9 || segunda<0 ||segunda>9 ||tercera<0 ||tercera>9) && segunda!=-10 && tercera !=-10 )
-        {
+            if ( (primera<-1 ||primera>9 || segunda<0 ||segunda>9 ||tercera<0 ||tercera>9) && (segunda != -10 || tercera!=-10))
+            {
+                printf("Deben ser números entre 0 y 9\n");
+                printf("oyente %d\n", número);
+                primera=segunda=tercera=-10;
+                scanf("%d,%d,%d", &primera, &segunda, &tercera);
+            }
             
-            printf("Deben ser números entre 0 y 9\n");
-            printf("oyente %d\n", número);
-            scanf("%d,%d,%d", &primera, &segunda, &tercera);
+            
+            
+            
             
         }
         
@@ -76,10 +85,6 @@ void lecturaYAlmacenamiento ( )
             matriz[cont][primera]=3;
             matriz[cont][segunda]=2;
             matriz[cont][tercera]=1;
-        }
-        
-        if (primera !=-1)
-        {
             número ++;
         }
         cont++;
@@ -93,7 +98,13 @@ void lecturaYAlmacenamiento ( )
 void conteoDeVotos( )
 {
    i=0;
-   matrizCanción[10]={(0,0,0,0,0,0,0,0,0,0)};
+   cont=0;
+   while (cont<10)
+   {
+       matrizCanción[cont]=0;
+       cont++;
+   }
+  
    while(i<10)
    {
        cont=0;
