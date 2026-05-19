@@ -226,18 +226,42 @@ void personaGanadora ( )
     cont=0;
     while(cont<número)
     {
-        if(matriz[cont][canciónMásVotada1]!=0)
+        i=0;
+        while(i<10)
         {
-            matrizOyente[cont]=30;
+            if(matrizCanciónMásVotada[i]==1)
+            {
+                if(matriz[cont][i]!=0)
+                {
+                    matrizOyente[cont]=30;
+                }
+            }
+            i++;
         }
-        if(matriz[cont][canciónMásVotada2]!=0)
+        
+        
+        i=0;
+        while(i<10)
         {
-            matrizOyente[cont]=matrizOyente[cont]+20;
+            if(matrizSegundaCanciónMásVotada[i]==1 && i<10)
+            {
+                if(matriz[cont][i]!=0)
+                {
+                    if(matrizOyente[cont]==30)
+                    {
+                        matrizOyente[cont]=60;
+                    }
+                    else
+                    {
+                        matrizOyente[cont]=20;
+                        i=10; 
+                    }
+                    
+                }
+            }
+            i++;
         }
-        if(matriz[cont][canciónMásVotada1]!=0 && matriz[cont][canciónMásVotada2]!=0 )
-        {
-            matrizOyente[cont]=60;
-        }
+
         printf("Oyente número %d: %d puntos\n",cont, matrizOyente[cont]);
         cont++;
     }
