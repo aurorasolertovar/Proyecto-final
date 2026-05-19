@@ -18,6 +18,9 @@ int canciónMásVotada2;
 int votosmáximos;
 int puntosmáximos;
 int oyenteganador;
+int matrizCanciónMásVotada[10];
+int matrizSegundaCanciónMásVotada[10];
+
     
 int main()
 {
@@ -124,10 +127,23 @@ void conteoDeVotos( )
         i++;
     }
     
-    i=0;
+    
     votosmáximos=matrizCanción[0];
+    cont=0;
+    while (cont<10)
+    {
+        matrizCanciónMásVotada[cont]=0;
+        cont++;
+    }
+    cont=0;
+    while (cont<10)
+    {
+        matrizSegundaCanciónMásVotada[cont]=0;
+        cont++;
+    }
     canciónMásVotada1=0;
     canciónMásVotada2=0;
+    i=0;
     while(i<9)
     {
         if(votosmáximos<matrizCanción[i+1])
@@ -137,9 +153,36 @@ void conteoDeVotos( )
         }
         i++;
     }
-    printf("La canción más votada es la número %d\n", canciónMásVotada1);
     
-    matrizCanción[canciónMásVotada1]=0;
+    i=0;
+    while(i<10)
+    {
+        if(votosmáximos==matrizCanción[i])
+        {
+            matrizCanciónMásVotada[i]=1;
+        }
+        i++;
+    }
+    
+    i=0;
+    while(i<10)
+    {
+        if (matrizCanciónMásVotada[i]==1)
+        {
+         printf("La canción más votada es la número %d\n", i);
+        }
+        i++;
+    }
+    
+    i=0;
+    while(i<10)
+    {
+        if (matrizCanciónMásVotada[i]==1)
+        {
+            matrizCanción[i]=0;
+        }
+        i++;
+    }
     
     votosmáximos=matrizCanción[0];
     i=0;
@@ -150,9 +193,30 @@ void conteoDeVotos( )
             canciónMásVotada2=i+1;
             votosmáximos=matrizCanción[i+1];
         }
+        
         i++;
     }
-    printf("La segunda canción más votada es la número %d\n", canciónMásVotada2);
+    
+    i=0;
+    while(i<10)
+    {
+        if(votosmáximos==matrizCanción[i])
+        {
+            matrizSegundaCanciónMásVotada[i]=1;
+        }
+        i++;
+    }
+    
+    i=0;
+    while(i<10)
+    {
+        if (matrizSegundaCanciónMásVotada[i]==1)
+        {
+         printf("La segunda canción más votada es la número %d\n", i);
+         
+        }
+        i++;
+    }
 }
 
 void personaGanadora ( )
